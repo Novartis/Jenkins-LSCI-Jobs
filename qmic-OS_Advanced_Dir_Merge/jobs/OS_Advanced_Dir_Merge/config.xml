@@ -1,0 +1,350 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Merges file metadata (name, url, parentOfParent/parent/folder name etc) from folders into a CSV formatted list. Optionally parses Well Identifiers embedded in file names as additional CSV columns.</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <job-metadata plugin="metadata@1.1.0b">
+      <values class="linked-list">
+        <metadata-string>
+          <name>job-type</name>
+          <description>Options: visualization,data-source
+Galaxy: tool.tool_type</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <value>data-source</value>
+        </metadata-string>
+        <metadata-string>
+          <name>output-format</name>
+          <description>This is the data type of the output file. It can be one of the supported data types ( e.g., &quot;tabular&quot; ) or the format of the tool&apos;s input dataset ( e.g., format=&quot;input&quot; ). 
+It can also be an image type if the output is destined for visualization</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <value>csv,rds</value>
+        </metadata-string>
+        <metadata-string>
+          <name>metadata-source</name>
+          <description>This reads the metadata information from the tool&apos;s input dataset properties file(named with the extension.properties)</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>true</exposedToEnvironment>
+          <value>properties</value>
+        </metadata-string>
+        <metadata-string>
+          <name>project-revision</name>
+          <description>Last SVN revision number that this is based on. If modifications are made then add -mod to this revision number</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>true</exposedToEnvironment>
+          <value></value>
+        </metadata-string>
+        <metadata-string>
+          <name>deprecated</name>
+          <description>A flag (true/false) to indicate whether a job is deprecated or active</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <value>false</value>
+        </metadata-string>
+        <metadata-tree>
+          <name>stats-engine</name>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <children class="linked-list">
+            <metadata-string>
+              <name>library</name>
+              <description>comma separated list of stat-engine libraries required for the job.</description>
+              <parent class="metadata-tree" reference="../../.."/>
+              <generated>false</generated>
+              <exposedToEnvironment>true</exposedToEnvironment>
+              <value>caret,sm</value>
+            </metadata-string>
+            <metadata-string>
+              <name>export-session</name>
+              <description>Options: true/false If the code supports it, it will export session data from the stat engine for debugging purposes</description>
+              <parent class="metadata-tree" reference="../../.."/>
+              <generated>false</generated>
+              <exposedToEnvironment>true</exposedToEnvironment>
+              <value>false</value>
+            </metadata-string>
+          </children>
+        </metadata-tree>
+        <metadata-tree>
+          <name>job-info</name>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>true</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <children class="linked-list">
+            <metadata-tree>
+              <name>last-saved</name>
+              <description></description>
+              <parent class="metadata-tree" reference="../../.."/>
+              <generated>true</generated>
+              <exposedToEnvironment>false</exposedToEnvironment>
+              <children class="linked-list">
+                <metadata-date>
+                  <name>time</name>
+                  <description></description>
+                  <parent class="metadata-tree" reference="../../.."/>
+                  <generated>true</generated>
+                  <exposedToEnvironment>false</exposedToEnvironment>
+                  <value>
+                    <time>1521652751635</time>
+                    <timezone>America/New_York</timezone>
+                  </value>
+                  <checked>false</checked>
+                </metadata-date>
+                <metadata-tree>
+                  <name>user</name>
+                  <parent class="metadata-tree" reference="../../.."/>
+                  <generated>true</generated>
+                  <exposedToEnvironment>false</exposedToEnvironment>
+                  <children class="linked-list">
+                    <metadata-string>
+                      <name>display-name</name>
+                      <description></description>
+                      <parent class="metadata-tree" reference="../../.."/>
+                      <generated>true</generated>
+                      <exposedToEnvironment>false</exposedToEnvironment>
+                      <value>Ioannis Moutsatsos</value>
+                    </metadata-string>
+                    <metadata-string>
+                      <name>full-name</name>
+                      <description></description>
+                      <parent class="metadata-tree" reference="../../.."/>
+                      <generated>true</generated>
+                      <exposedToEnvironment>false</exposedToEnvironment>
+                      <value>Ioannis Moutsatsos</value>
+                    </metadata-string>
+                  </children>
+                </metadata-tree>
+              </children>
+            </metadata-tree>
+          </children>
+        </metadata-tree>
+      </values>
+    </job-metadata>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>WHAT_IS_THIS</name>
+          <description>
+&lt;h2 style=&quot;color:blue&quot;&gt;1. Select criteria for file search&lt;/h2&gt;</description>
+          <defaultValue>Finds files specified by the user and generates a CSV formatted list of various file metadata (name, url, parentOfParent/parent/folder name etc). Optionally extracts WellIDs from file names into plate coordinates.</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BASE_FOLDER</name>
+          <description>Base folder for browsing. Replace with your own network share as needed</description>
+          <defaultValue>\\example.com\LABDATA\LABS\HTFC\Assay</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <org.biouno.unochoice.CascadeChoiceParameter plugin="uno-choice@2.1">
+          <name>SOURCE_FOLDER</name>
+          <description>The files may reside up to &lt;b&gt;two-level deep sub-folders&lt;/b&gt; of the SOURCE_FOLDER. Please, note that the SOURCE_FOLDER must be accessible to the Jenkins server.&lt;/b&gt;.
+&lt;p&gt;This is the source folder containing the files whose &lt;b&gt;metadata will be merged</description>
+          <randomName>choice-parameter-77631357692388</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.39">
+              <script>def netShare=&apos;&apos;
+def SELECT=&apos;Network&apos;
+netShare=SOURCE_FOLDER
+def defaultNetPath=BASE_FOLDER
+def clickedFolder=&apos;&apos;
+def fileChoiceList=[:]
+def label=&apos;&apos;
+
+/*
+We reset the clickedFolder if user changed the root path
+*/
+if (netShare==&apos;&apos; || !SOURCE_FOLDER.replace(&apos;\\&apos;,&apos;/&apos;).startsWith(BASE_FOLDER.replace(&apos;\\&apos;,&apos;/&apos;))){
+clickedFolder=defaultNetPath
+label=&apos;Initial&apos;
+}else{
+clickedFolder=netShare.replace(&apos;\\&apos;,&apos;/&apos;)
+label=&apos;Current&apos;
+}
+
+myDir=new File(clickedFolder)
+myParent=myDir.parent
+fileChoiceList.put(clickedFolder,&quot;---$label:$clickedFolder:selected&quot; as String)
+fileChoiceList.put(myParent, &quot;---Parent:$myParent&quot; as String)
+
+
+myDir.eachDir{
+if (it.isDirectory()){
+fileChoiceList.put(it.path,it.name)
+}
+}
+
+
+return fileChoiceList.sort()</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.39">
+              <script></script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>OS_Advanced_Dir_Merge</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>SOURCE_FOLDER,BASE_FOLDER</referencedParameters>
+          <choiceType>PT_MULTI_SELECT</choiceType>
+          <filterable>false</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.CascadeChoiceParameter>
+        <hudson.model.StringParameterDefinition>
+          <name>FILE_FILTER</name>
+          <description>&lt;p&gt;Text for selecting files (default will select all files with csv extension). 
+&lt;p&gt;To include part of the file-name in the filter, you can prepend the file-name to the extension.&lt;p&gt;
+For example something like &lt;b&gt;SearchText.csv&lt;/b&gt; will find all csv files whose name contains &apos;SearchText&apos;</description>
+          <defaultValue>Layout.png</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>FOLDER_FILTER</name>
+          <description>Folders will be be included in the search for files if their names contain the FOLDER_FILTER&lt;p&gt;
+Leave blank to search all sub-folders of SOURCE_FOLDER</description>
+          <defaultValue>FlowJo</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ADD_FILEMETA</name>
+          <description>&lt;p&gt;Include the names of Level 1 (L1) and Level 2 (L2)  folders  as two extra columns</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>ADD_WELL_ID</name>
+          <description></description>
+          <randomName>choice-parameter-77631362150496</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.39">
+              <script>return &quot;&quot;&quot;
+&lt;input name=&quot;value&quot; type=&quot;checkbox&quot;&gt;
+&lt;input id=&quot;prefix&quot; type=&quot;text&quot; name=&quot;value&quot; value=&quot;Layout.Well_&quot; placeholder=&quot;prefix&quot;&gt;-WELL_ID-&lt;input id=&quot;postfix&quot;  name=&quot;value&quot; placeholder=&quot;postfix&quot;&gt;
+&lt;p&gt;Provide an example of how the Well ID is positioned in the file name. 
+&lt;p&gt;Use a common file name prefix or suffix to construct your example. Do not include file extension
+&lt;h2 style=&quot;color:blue&quot;&gt;2. Annotate the build output&lt;/h2&gt;
+&quot;&quot;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.39">
+              <script>return &apos;Error in ADD_WELL_IDscript&apos;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>OS_Advanced_Dir_Merge</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters></referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>true</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>DATA_LABEL</name>
+          <description>&lt;p&gt;An easily recognizable short label for the data set. You may further customize the auto-generated default.</description>
+          <randomName>choice-parameter-2382237898119174</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.39">
+              <script>return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${SOURCE_FOLDER.split(&apos;/&apos;).last().toUpperCase()}.DATA\&quot; class=\&quot;setting-input   \&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.39">
+              <script>return[&apos;DATA_LABEL script error&apos;]</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>OS_Advanced_Dir_Merge</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>SOURCE_FOLDER</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>true</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <hudson.model.StringParameterDefinition>
+          <name>DESCRIPTION</name>
+          <description>&lt;p&gt;Provide a short description to aid data annotation and discovery</description>
+          <defaultValue>My Interesting Data</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <org.biouno.unochoice.ChoiceParameter plugin="uno-choice@2.1">
+          <name>DATA_OWNER</name>
+          <description>&lt;p&gt;Please, assign the data set owner</description>
+          <randomName>choice-parameter-2382237900151276</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.ScriptlerScript">
+            <scriptlerScriptId>CurrentUser.groovy</scriptlerScriptId>
+            <parameters class="linked-hash-map"/>
+          </script>
+          <projectName>OS_Advanced_Dir_Merge</projectName>
+          <choiceType>PT_SINGLE_SELECT</choiceType>
+          <filterable>false</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.ChoiceParameter>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.groovy.Groovy plugin="groovy@2.0">
+      <scriptSource class="hudson.plugins.groovy.FileScriptSource">
+        <scriptFile>$JENKINS_HOME/jobs/$JOB_NAME/buildScripts/advanceDirMerge_build.groovy</scriptFile>
+      </scriptSource>
+      <groovyName>jenkinsGroovy</groovyName>
+      <parameters>-cp $JENKINS_HOME/jobs/$JOB_NAME/buildScripts/</parameters>
+      <scriptParameters></scriptParameters>
+      <properties></properties>
+      <javaOpts></javaOpts>
+      <classPath></classPath>
+    </hudson.plugins.groovy.Groovy>
+    <hudson.plugins.groovy.Groovy plugin="groovy@2.0">
+      <scriptSource class="hudson.plugins.groovy.FileScriptSource">
+        <scriptFile>$JENKINS_HOME/jobScripts/groovyBuilders/writeXMLProperties_cli.groovy</scriptFile>
+      </scriptSource>
+      <groovyName>jenkinsGroovy</groovyName>
+      <parameters></parameters>
+      <scriptParameters>-w $WORKSPACE -c ${JENKINS_HOME}/jobs/${JOB_NAME}/buildProps/report.properties</scriptParameters>
+      <properties></properties>
+      <javaOpts></javaOpts>
+      <classPath></classPath>
+    </hudson.plugins.groovy.Groovy>
+  </builders>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>*.*</artifacts>
+      <allowEmptyArchive>true</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.plugins.summary__report.ACIPluginPublisher plugin="summary_report@1.15">
+      <name>writeXmlSummary.xml</name>
+      <shownOnProjectPage>false</shownOnProjectPage>
+    </hudson.plugins.summary__report.ACIPluginPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.3">
+      <template>${ENV,var=&quot;DATA_LABEL&quot;}</template>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
+  </buildWrappers>
+</project>

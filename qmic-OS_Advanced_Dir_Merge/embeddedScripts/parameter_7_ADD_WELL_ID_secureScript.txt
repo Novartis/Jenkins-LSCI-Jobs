@@ -1,0 +1,7 @@
+return """
+<input name="value" type="checkbox">
+<input id="prefix" type="text" name="value" value="Layout.Well_" placeholder="prefix">-WELL_ID-<input id="postfix"  name="value" placeholder="postfix">
+<p>Provide an example of how the Well ID is positioned in the file name. 
+<p>Use a common file name prefix or suffix to construct your example. Do not include file extension
+<h2 style="color:blue">2. Annotate the build output</h2>
+"""

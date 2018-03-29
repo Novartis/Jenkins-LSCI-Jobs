@@ -1,0 +1,30 @@
+/*
+Script writes a batch file for FlowJo command s
+*/
+env=System.getenv()
+//println "Target folder: $env['INPUT']"
+def batchFileName="${env['WORKSPACE']}/FlowJo_${env['BUILD_LABEL']}.bat"
+def batchFile= new File(batchFileName) 
+def fjOptionList=env['FJ_OPTIONS'].split(',') as List
+def fjOptions=''
+fjOptionList.each{
+fjOptions="$fjOptions -$it"
+}
+
+def myDir=new File(env['INPUT'])
+def oddList= myDir.listFiles(). sort{ file -> file.name }
+def folderCount=0
+oddList.each {file->
+   if (file.isDirectory()){
+   fjCommand= "\"${env['FLOWJO_EXE']}\" \"${env['FJ_TEMPLATE']}\" \"${file.canonicalPath}\" -outputFolder \"${env['OUTPUT_FOLDER']}\\${file.name}\" -prefs \"${env['PREFS']}\" $fjOptions "
+   println fjCommand
+   batchFile<<fjCommand+'\n'   
+   folderCount++
+   }
+
+ }
+if (folderCount==0){
+ println '-'*10
+ println 'WARNING: Could not find PLATE FOLDERS in INPUT. Try parent folder as INPUT?' 
+ println '-'*10
+}

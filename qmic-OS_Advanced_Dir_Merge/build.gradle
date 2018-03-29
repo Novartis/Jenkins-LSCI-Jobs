@@ -1,0 +1,77 @@
+plugins {
+    id 'base'
+//    id "org.ajoberstar.grgit" version "2.1.0"
+}
+
+
+description = 'Gradle Job Deployment Script'
+version = '1.0'
+
+ext {
+    jjName = 'qmic-OS_Advanced_Dir_Merge'
+    job_name='OS_Advanced_Dir_Merge'
+    jenkinsHome=System.getenv("JENKINS_HOME").replace('\\','/')
+    scriptletPath="$jenkinsHome/scriptler/scripts" 
+    newScriptlets= []
+    new File("scriptler/scripts").eachFile{newScriptlets.add(it.name)}  
+}
+
+task copyConfig(type: Copy) {
+    from "jobs/$job_name/config.xml"
+    into "$jenkinsHome/jobs/$job_name/"
+    inputs.sourceFiles.stopExecutionIfEmpty()
+}
+
+task copyJobProperties(type: Copy) {
+    from "jobs/$job_name/buildProps"
+    into "$jenkinsHome/jobs/$job_name/buildProps"
+}
+
+task copyJobScripts(type: Copy) {
+    from "jobs/$job_name/buildScripts"
+    into "$jenkinsHome/jobs/$job_name/buildScripts"
+
+}
+
+task copyScriptlets(type: Copy) {
+    from "scriptler/scripts"
+    into "$jenkinsHome/scriptler/scripts"
+    
+}
+
+
+task copyExternals(type: Copy) {
+	description "copies external scripts to Jenkins libs folder"
+    copy {from "externalScripts/writeXMLProperties_cli.groovy"
+    	into "$jenkinsHome/jobScripts/groovyBuilders/"}
+    
+}
+
+task deploy(dependsOn: ['backup','copyConfig','copyJobProperties','copyJobScripts','copyScriptlets','copyExternals']){
+	doLast {
+	println "$job_name Successfully deployed"
+}
+}
+
+task backup(type: Copy){
+
+if (! new File("backup").exists()){
+   copy {from "$jenkinsHome/jobs/$job_name/config.xml"
+    into "backup/$job_name/"}
+    
+   copy {from "$jenkinsHome/jobs/$job_name/buildScripts"
+    into "backup/$job_name/buildScripts"}
+   
+   copy {from "$jenkinsHome/jobScripts/groovyBuilders/writeXMLProperties_cli.groovy"
+    into "backup/$job_name/externals"}
+    
+   copy {from "$jenkinsHome/jobs/$job_name/buildProps"    
+    into "backup/$job_name/buildProps"}
+    
+    newScriptlets.each{
+    println "$jenkinsHome/scriptler/scripts/$it"
+	    from "$jenkinsHome/scriptler/scripts/$it"    
+	    into "backup/scriptler/scripts"
+    }
+    }
+}

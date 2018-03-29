@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>&lt;div class=&quot;task&quot;&gt;&#xd;
+ &lt;a href=&quot;/job/FACS_FLOWJO_BATCH/build?delay=0sec&quot;&gt;&#xd;
+&lt;img style=&quot;margin: 2px;&quot; alt=&quot;&quot; src=&quot;http://docs.flowjo.com/wp-content/themes/flowjo/images/FJ-icon-gloss.png&quot;/&gt;&#xd;
+&lt;img height=&quot;50&quot; style=&quot;margin: 2px;&quot; alt=&quot;&quot; src=&quot;http://www.i2clipart.com/cliparts/8/0/d/e/clipart-command-line-80de.png&quot;/&gt;&#xd;
+   &lt;/a&gt;&#xd;
+    &lt;a href=&quot;/job/FACS_FLOWJO_BATCH/build?delay=0sec&quot;&gt;FlowJo Batch Now&lt;/a&gt; &#xd;
+&lt;/div&gt;&#xd;
+A Jenkins job to assist the creation of batch commands to execute FlowJo templates on data sets.</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <job-metadata plugin="metadata@1.1.0b">
+      <values class="linked-list">
+        <metadata-string>
+          <name>job-type</name>
+          <description>Options: visualization,data-source
+Galaxy: tool.tool_type</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <value>data-source</value>
+        </metadata-string>
+        <metadata-string>
+          <name>output-format</name>
+          <description>This is the data type of the output file. It can be one of the supported data types ( e.g., &quot;tabular&quot; ) or the format of the tool&apos;s input dataset ( e.g., format=&quot;input&quot; ). 
+It can also be an image type if the output is destined for visualization</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <value>csv,rds,png</value>
+        </metadata-string>
+        <metadata-string>
+          <name>metadata-source</name>
+          <description>This reads the metadata information from the tool&apos;s input dataset properties file(named with the extension.properties)</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>true</exposedToEnvironment>
+          <value>properties</value>
+        </metadata-string>
+        <metadata-string>
+          <name>project-revision</name>
+          <description>Last SVN revision number that this is based on. If modifications are made then add -mod to this revision number</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>true</exposedToEnvironment>
+          <value></value>
+        </metadata-string>
+        <metadata-string>
+          <name>deprecated</name>
+          <description>A flag (true/false) to indicate whether a job is deprecated or active</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <value>false</value>
+        </metadata-string>
+        <metadata-tree>
+          <name>stats-engine</name>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <children class="linked-list">
+            <metadata-string>
+              <name>library</name>
+              <description>comma separated list of stat-engine libraries required for the job.</description>
+              <parent class="metadata-tree" reference="../../.."/>
+              <generated>false</generated>
+              <exposedToEnvironment>true</exposedToEnvironment>
+              <value>caret,sm</value>
+            </metadata-string>
+            <metadata-string>
+              <name>export-session</name>
+              <description>Options: true/false If the code supports it, it will export session data from the stat engine for debugging purposes</description>
+              <parent class="metadata-tree" reference="../../.."/>
+              <generated>false</generated>
+              <exposedToEnvironment>true</exposedToEnvironment>
+              <value>false</value>
+            </metadata-string>
+          </children>
+        </metadata-tree>
+        <metadata-tree>
+          <name>job-info</name>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>true</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <children class="linked-list">
+            <metadata-tree>
+              <name>last-saved</name>
+              <description></description>
+              <parent class="metadata-tree" reference="../../.."/>
+              <generated>true</generated>
+              <exposedToEnvironment>false</exposedToEnvironment>
+              <children class="linked-list">
+                <metadata-date>
+                  <name>time</name>
+                  <description></description>
+                  <parent class="metadata-tree" reference="../../.."/>
+                  <generated>true</generated>
+                  <exposedToEnvironment>false</exposedToEnvironment>
+                  <value>
+                    <time>1521581419458</time>
+                    <timezone>America/New_York</timezone>
+                  </value>
+                  <checked>false</checked>
+                </metadata-date>
+                <metadata-tree>
+                  <name>user</name>
+                  <parent class="metadata-tree" reference="../../.."/>
+                  <generated>true</generated>
+                  <exposedToEnvironment>false</exposedToEnvironment>
+                  <children class="linked-list">
+                    <metadata-string>
+                      <name>display-name</name>
+                      <description></description>
+                      <parent class="metadata-tree" reference="../../.."/>
+                      <generated>true</generated>
+                      <exposedToEnvironment>false</exposedToEnvironment>
+                      <value>Ioannis Moutsatsos</value>
+                    </metadata-string>
+                    <metadata-string>
+                      <name>full-name</name>
+                      <description></description>
+                      <parent class="metadata-tree" reference="../../.."/>
+                      <generated>true</generated>
+                      <exposedToEnvironment>false</exposedToEnvironment>
+                      <value>Ioannis Moutsatsos</value>
+                    </metadata-string>
+                  </children>
+                </metadata-tree>
+              </children>
+            </metadata-tree>
+          </children>
+        </metadata-tree>
+      </values>
+    </job-metadata>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>WHAT_IS_THIS</name>
+          <description>&lt;img style=&quot;margin: 2px;&quot; alt=&quot;&quot; src=&quot;http://docs.flowjo.com/wp-content/themes/flowjo/images/FJ-icon-gloss.png&quot;/&gt;
+&lt;img height=&quot;50&quot; style=&quot;margin: 2px;&quot; alt=&quot;&quot; src=&quot;http://www.i2clipart.com/cliparts/8/0/d/e/clipart-command-line-80de.png&quot;/&gt;
+
+&lt;h2&gt;1. Designate INPUT and OUTPUT data paths&lt;/h2&gt;</description>
+          <defaultValue>A simple utility to aid in the generation of FlowJo batch commands to process FACS data</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>INPUT</name>
+          <description>Complete path to INPUT data FOLDER. Replace with your own network share as needed.
+&lt;p&gt;Specify location through a UNC  (and not a drive letter) for Jenkins to be able to access it and traverse its subfolders
+</description>
+          <defaultValue>\\example.com\LABDATA\LABS\HTFC\Assay</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>OUTPUT_FOLDER</name>
+          <description>Complete path to folder where the output files from automated batching and export are placed
+&lt;p&gt;An output sub-folder will be created for each input parent folder.
+&lt;h2&gt;2. Select &lt;a href=&quot;http://docs.flowjo.com/vx/advanced-features/fj-commandline/&quot; target=&quot;_blank&quot;&gt;FlowJo command options&lt;/a&gt; templates and preferences&lt;/h2&gt;
+</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>FLOWJO_EXE</name>
+          <description>Complete path to the FlowJo executable on the computer where FlowJo will be executed from the command line.</description>
+          <defaultValue>C:\Program Files\FlowJo VX\FlowJo_V10.exe</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>FJ_TEMPLATE</name>
+          <description>Complete path to a FlowJo &lt;b&gt;processing template&lt;/b&gt; file (.wspt)</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>PREFS</name>
+          <description>Complete path to a &lt;b&gt; preferences file&lt;/b&gt; (.prefs)</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <org.biouno.unochoice.ChoiceParameter plugin="uno-choice@2.1">
+          <name>FJ_OPTIONS</name>
+          <description>Select additional FlowJo options&lt;h2&gt;3. Annotate this build&lt;/h2&gt;</description>
+          <randomName>choice-parameter-1862114525107800</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.ScriptlerScript">
+            <scriptlerScriptId>AC_GetCollectionPropertyKey.groovy</scriptlerScriptId>
+            <parameters class="linked-hash-map">
+              <entry>
+                <string>vPropFile</string>
+                <string>flowJo_batch.properties</string>
+              </entry>
+              <entry>
+                <string>vPropKey</string>
+                <string>fj_options</string>
+              </entry>
+              <entry>
+                <string>vRelPropFileUrl</string>
+                <string>userContent/properties/</string>
+              </entry>
+            </parameters>
+          </script>
+          <projectName>OS_FACS_FLOWJO_BATCH</projectName>
+          <choiceType>PT_CHECKBOX</choiceType>
+          <filterable>false</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.ChoiceParameter>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>BUILD_LABEL</name>
+          <description>A custom build label that can help you identify this Jenkins build from others</description>
+          <randomName>choice-parameter-1865505550030800</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.39">
+              <script>def refParam=&apos;&apos;
+if (INPUT==&apos;&apos;){
+refParam=&apos;Select INPUT&apos;
+}else{
+pathParts=INPUT.split(&apos;\\\\&apos;)
+refParam=pathParts.last()
+}
+
+return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${refParam}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.39">
+              <script>return &apos;Error in BUILD_LABEL Script&apos;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>OS_FACS_FLOWJO_BATCH</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>INPUT</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>true</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <hudson.model.TextParameterDefinition>
+          <name>BUILD_DESCRIPTION</name>
+          <description>A short description of this Jenkins build</description>
+          <defaultValue>FlowJo batch file to analyze FACS data</defaultValue>
+          <trim>false</trim>
+        </hudson.model.TextParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.groovy.Groovy plugin="groovy@2.0">
+      <scriptSource class="hudson.plugins.groovy.StringScriptSource">
+        <command>/*
+Script writes a batch file for FlowJo command s
+*/
+env=System.getenv()
+//println &quot;Target folder: $env[&apos;INPUT&apos;]&quot;
+def batchFileName=&quot;${env[&apos;WORKSPACE&apos;]}/FlowJo_${env[&apos;BUILD_LABEL&apos;]}.bat&quot;
+def batchFile= new File(batchFileName) 
+def fjOptionList=env[&apos;FJ_OPTIONS&apos;].split(&apos;,&apos;) as List
+def fjOptions=&apos;&apos;
+fjOptionList.each{
+fjOptions=&quot;$fjOptions -$it&quot;
+}
+
+def myDir=new File(env[&apos;INPUT&apos;])
+def oddList= myDir.listFiles(). sort{ file -&gt; file.name }
+def folderCount=0
+oddList.each {file-&gt;
+   if (file.isDirectory()){
+   fjCommand= &quot;\&quot;${env[&apos;FLOWJO_EXE&apos;]}\&quot; \&quot;${env[&apos;FJ_TEMPLATE&apos;]}\&quot; \&quot;${file.canonicalPath}\&quot; -outputFolder \&quot;${env[&apos;OUTPUT_FOLDER&apos;]}\\${file.name}\&quot; -prefs \&quot;${env[&apos;PREFS&apos;]}\&quot; $fjOptions &quot;
+   println fjCommand
+   batchFile&lt;&lt;fjCommand+&apos;\n&apos;   
+   folderCount++
+   }
+
+ }
+if (folderCount==0){
+ println &apos;-&apos;*10
+ println &apos;WARNING: Could not find PLATE FOLDERS in INPUT. Try parent folder as INPUT?&apos; 
+ println &apos;-&apos;*10
+}</command>
+      </scriptSource>
+      <groovyName>jenkinsGroovy</groovyName>
+      <parameters></parameters>
+      <scriptParameters></scriptParameters>
+      <properties></properties>
+      <javaOpts></javaOpts>
+      <classPath></classPath>
+    </hudson.plugins.groovy.Groovy>
+  </builders>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>*.*</artifacts>
+      <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
+    </hudson.tasks.ArtifactArchiver>
+    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
+      <script plugin="script-security@1.39">
+        <script>/* jnknsysGroovy_CleanWorkspace.groovy
+ * A simple Groovy script to clean up a Jenkins project workspace folder
+ * Since December 14-2012
+ * author Ioannis k. Moutsatsos
+*/
+import hudson.model.*
+
+// get current thread / Executor
+def thr = Thread.currentThread()
+// get current build
+def build = thr?.executable
+def options =new HashMap()
+
+// build/environmental variables
+def envVarsMap = build.parent.builds[0].properties.get(&quot;envVars&quot;)
+options.putAll(envVarsMap)
+
+//Clean up all files in workspace recursively using the Antbuilder method
+def ant= new AntBuilder()
+println &quot;Post-Build Action: Cleaning Workspace: ${options.WORKSPACE}&quot;
+//deletes all files and subdirectories of WORKSPACE, without WORKSPACE itself.
+ant.delete{fileset(dir:&quot;${options.WORKSPACE}&quot;, includes:&quot;**/*.*&quot;)}</script>
+        <sandbox>false</sandbox>
+      </script>
+      <behavior>0</behavior>
+      <runForMatrixParent>false</runForMatrixParent>
+    </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
+  </publishers>
+  <buildWrappers>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.3">
+      <template>${ENV,var=&quot;BUILD_LABEL&quot;}</template>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
+  </buildWrappers>
+</project>

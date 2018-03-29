@@ -1,0 +1,22 @@
+/* jnknsysGroovy_CleanWorkspace.groovy
+ * A simple Groovy script to clean up a Jenkins project workspace folder
+ * Since December 14-2012
+ * author Ioannis k. Moutsatsos
+*/
+import hudson.model.*
+
+// get current thread / Executor
+def thr = Thread.currentThread()
+// get current build
+def build = thr?.executable
+def options =new HashMap()
+
+// build/environmental variables
+def envVarsMap = build.parent.builds[0].properties.get("envVars")
+options.putAll(envVarsMap)
+
+//Clean up all files in workspace recursively using the Antbuilder method
+def ant= new AntBuilder()
+println "Post-Build Action: Cleaning Workspace: ${options.WORKSPACE}"
+//deletes all files and subdirectories of WORKSPACE, without WORKSPACE itself.
+ant.delete{fileset(dir:"${options.WORKSPACE}", includes:"**/*.*")}

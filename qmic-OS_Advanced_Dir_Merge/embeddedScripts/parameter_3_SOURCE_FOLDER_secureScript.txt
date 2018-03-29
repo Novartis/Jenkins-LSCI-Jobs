@@ -1,0 +1,33 @@
+def netShare=''
+def SELECT='Network'
+netShare=SOURCE_FOLDER
+def defaultNetPath=BASE_FOLDER
+def clickedFolder=''
+def fileChoiceList=[:]
+def label=''
+
+/*
+We reset the clickedFolder if user changed the root path
+*/
+if (netShare=='' || !SOURCE_FOLDER.replace('\\','/').startsWith(BASE_FOLDER.replace('\\','/'))){
+clickedFolder=defaultNetPath
+label='Initial'
+}else{
+clickedFolder=netShare.replace('\\','/')
+label='Current'
+}
+
+myDir=new File(clickedFolder)
+myParent=myDir.parent
+fileChoiceList.put(clickedFolder,"---$label:$clickedFolder:selected" as String)
+fileChoiceList.put(myParent, "---Parent:$myParent" as String)
+
+
+myDir.eachDir{
+if (it.isDirectory()){
+fileChoiceList.put(it.path,it.name)
+}
+}
+
+
+return fileChoiceList.sort()

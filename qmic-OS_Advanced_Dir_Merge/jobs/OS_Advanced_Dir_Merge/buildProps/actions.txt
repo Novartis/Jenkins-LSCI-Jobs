@@ -1,0 +1,2 @@
+ACTION,LINK
+Donwnload Image List,!!${env['BUILD_URL']}artifact/JData.csv!!

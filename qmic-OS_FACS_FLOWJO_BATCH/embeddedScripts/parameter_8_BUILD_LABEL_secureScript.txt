@@ -1,0 +1,9 @@
+def refParam=''
+if (INPUT==''){
+refParam='Select INPUT'
+}else{
+pathParts=INPUT.split('\\\\')
+refParam=pathParts.last()
+}
+
+return "<input name=\"value\" value=\"${refParam}\" class=\"setting-input\" type=\"text\">"

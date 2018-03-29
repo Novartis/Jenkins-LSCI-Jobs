@@ -1,0 +1,1 @@
+return "<input name=\"value\" value=\"${SOURCE_FOLDER.split('/').last().toUpperCase()}.DATA\" class=\"setting-input   \" type=\"text\">"
